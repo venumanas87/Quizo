@@ -1,0 +1,470 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    tools:context=".LoggedIn"
+    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+    android:orientation="vertical">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:id="@+id/rl"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ten_dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello,"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:id="@+id/main1"
+            android:layout_marginHorizontal="@dimen/twenty"
+            android:maxWidth="300dp"
+            android:fontFamily="@font/comfortaa"/>
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loading"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:id="@+id/main"
+        android:layout_below="@id/main1"
+            android:layout_marginHorizontal="@dimen/twenty"
+        android:maxWidth="300dp"
+        android:fontFamily="@font/comfortaa"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/newspaper"
+        android:id="@+id/profimg"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_marginEnd="@dimen/twenty"
+        android:layout_centerVertical="true"/>
+    </RelativeLayout>
+</RelativeLayout>
+
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/wtcd"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginHorizontal="@dimen/ten_dp"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="-100dp"
+       android:layout_alignTop="@id/cdbg"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="0.7dp"
+        app:cardCornerRadius="@dimen/twenty"
+        app:cardElevation="@dimen/twenty">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/refresh"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="-20dp"
+            android:layout_gravity="center|top"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/refresh" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#33ffffff"
+            >
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/cel"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginVertical="@dimen/twenty"
+                >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="@dimen/twenty"
+                    android:contentDescription="tempicon"
+                    android:src="@drawable/temper" />
+
+                <TextView
+                    android:id="@+id/deg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/twenty"
+                    android:fontFamily="@font/advent_pro_thin"
+                    android:gravity="center_vertical"
+                    android:text=".C"
+                    android:textAppearance="?attr/textAppearanceHeadline2"
+                    android:textSize="50sp" />
+            </LinearLayout>
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/anim"
+                android:layout_centerInParent="true"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                />
+
+            <TextView
+                android:id="@+id/wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/anim"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/raleway_light"
+                android:text="Wind Speed : " />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="@dimen/twenty"
+                android:layout_toEndOf="@id/anim"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                >
+
+                <TextView
+                    android:id="@+id/city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:layout_toEndOf="@id/cel"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/raleway_light"
+                    android:text="@string/loading" />
+
+                <TextView
+                    android:id="@+id/desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/city"
+                    android:layout_marginTop="50dp"
+                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/raleway_light"
+                    android:gravity="center_horizontal"
+                    android:text="...."
+                    />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:cardCornerRadius="20dp"
+            android:layout_below="@id/wtcd"
+            app:cardElevation="15dp"
+            android:outlineSpotShadowColor="@color/md_red_800"
+            android:outlineAmbientShadowColor="@color/md_red_800"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/md_red_800"
+            android:id="@+id/coroCD"
+            android:backgroundTint="#FFFFFF"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="5dp"
+                    >
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:lottie_url="https://assets5.lottiefiles.com/packages/lf20_yhxADL.json"
+                    app:lottie_loop="true"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@id/rl1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    app:lottie_autoPlay="true"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/bgcoro"
+                    android:id="@+id/rl1"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/prompt_light"
+                        android:text="COVID-19"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+
+                </RelativeLayout>
+                </RelativeLayout>
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_marginTop="@dimen/ten_dp"
+    android:onClick="openCovid"
+    android:layout_gravity="center_horizontal"
+    android:layout_height="wrap_content">
+                <!--<TextView
+                    android:id="@+id/cuurrr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/raleway_light"
+                    android:gravity="center"
+                    android:text="Currently in" />-->
+   <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_margin="@dimen/ten_dp"
+       android:id="@+id/stCard"
+       android:clickable="true"
+       app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+       android:focusable="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="@dimen/hundred"
+            android:id="@+id/inyour"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/raleway_light"
+            android:text="state"
+            android:maxHeight="@dimen/twenty" />
+  </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:id="@+id/conf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/twenty"
+                        android:fontFamily="@font/raleway_light"
+                        android:text="@string/loading"
+                        android:textAlignment="center"
+                        android:textColor="#B71C1C" />
+
+                    <TextView
+                        android:id="@+id/act"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/twenty"
+                        android:fontFamily="@font/raleway_light"
+                        android:text="@string/loading"
+                        android:textAlignment="center"
+                        android:textColor="#F57F17" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/twenty"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:gravity="center"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loading"
+                        android:id="@+id/rec"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/raleway_light"
+                        android:layout_marginHorizontal="@dimen/twenty"
+                        android:textColor="#64DD17"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loading"
+                        android:id="@+id/dea"
+                        android:fontFamily="@font/raleway_light"
+                        android:textAlignment="center"
+                        android:textColor="#9FA8DA"
+                        android:layout_marginHorizontal="@dimen/twenty"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:id="@+id/expandL"
+                    >
+                    <TextView
+                        android:id="@+id/inyour1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/twenty"
+                        android:fontFamily="@font/raleway_light"
+                        android:gravity="center"
+                        android:text="Currently in your state" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/twenty"
+                        android:gravity="center"
+                        >
+
+                        <TextView
+                            android:id="@+id/conf1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/twenty"
+                            android:fontFamily="@font/raleway_light"
+                            android:text="@string/loading"
+                            android:textAlignment="center"
+                            android:textColor="#B71C1C" />
+
+                        <TextView
+                            android:id="@+id/act1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/twenty"
+                            android:fontFamily="@font/raleway_light"
+                            android:text="@string/loading"
+                            android:textAlignment="center"
+                            android:textColor="#F57F17" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/twenty"
+                        android:layout_marginTop="@dimen/twenty"
+                        android:gravity="center"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/loading"
+                            android:id="@+id/rec1"
+                            android:textAlignment="center"
+                            android:fontFamily="@font/raleway_light"
+                            android:layout_marginHorizontal="@dimen/twenty"
+                            android:textColor="#64DD17"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/loading"
+                            android:id="@+id/dea1"
+                            android:fontFamily="@font/raleway_light"
+                            android:textAlignment="center"
+                            android:textColor="#9FA8DA"
+                            android:layout_marginHorizontal="@dimen/twenty"
+                            />
+
+                    </LinearLayout>
+                    <com.google.android.gms.ads.AdView
+                        xmlns:ads="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/adView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                       android:layout_gravity="center_horizontal"
+                        ads:adSize="BANNER"
+                        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+                        <!--ca-app-pub-3940256099942544/6300978111 test-->
+                        <!--ca-app-pub-2569821792203202/6271292202 orig-->
+                    </com.google.android.gms.ads.AdView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/recycler_view"
+                        />
+                </LinearLayout>
+
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/img"
+                    android:layout_gravity="center_horizontal"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_expand_more_black_24dp"/>
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+        <com.google.android.material.card.MaterialCardView
+        android:layout_below="@id/rl"
+        android:id="@+id/cdbg"
+        android:layout_width="match_parent"
+        android:layout_height="1000dp"
+        android:backgroundTint="#FFFFFF"
+        android:alpha="0.95"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp">
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+</RelativeLayout>
+</ScrollView>
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_light"
+            android:id="@+id/btmnav"
+            app:menu="@menu/new_menu"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimaryLight"
+            app:itemIconTint="@drawable/nav_back"
+            android:elevation="0dp"
+            app:itemHorizontalTranslationEnabled="false"
+            />
+    </FrameLayout>
+

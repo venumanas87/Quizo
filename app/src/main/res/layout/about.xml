@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/grey">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rl1"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rl2">
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:lottie_url="https://assets6.lottiefiles.com/packages/lf20_R6KBZ3.json"
+                android:layout_centerHorizontal="true"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true" />
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/ic_launcher_foreground"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rl3"
+                android:layout_below="@id/rl2"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/twenty"
+                    android:text="@string/the_quizo_app_is_developed_with_3_by_venu"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/raleway_light"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/twenty"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl3">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="30sp"
+                    android:id="@+id/cont"
+                    android:text="@string/the_contributers"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/raleway"
+                    android:layout_marginTop="40dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:id="@+id/contt"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/raleway"
+                    android:layout_marginTop="@dimen/twenty"
+                    android:layout_marginHorizontal="@dimen/twenty"
+                    android:layout_below="@id/cont"
+                    android:text="@string/a_very_very_big_thanks_to_all_our_talented_contributers_without_them_the_app_would_be_impossible"/>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/contt"
+                    android:layout_marginHorizontal="@dimen/twenty"
+                    android:layout_marginTop="@dimen/twenty"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:src="@mipmap/ic_launcher_foreground"
+                            android:id="@+id/vvk"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/vvk">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/nam"
+                            android:text="Vivek Shahi"
+                            android:textSize="@dimen/twenty"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:textAlignment="center"
+                            android:id="@+id/nn"
+                            android:layout_margin="5dp"
+                            android:text="Specialized in vector arts and illustions"
+                            android:layout_below="@id/nam"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:textAlignment="center"
+                                android:fontFamily="@font/raleway_light"
+                                android:text="Designer of the Quizo App logo"
+                                android:layout_below="@id/nn"/>
+                        </RelativeLayout>
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="THE QUIZO APP"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:textColor="@color/white"
+    android:fontFamily="@font/comfortaa_bold"/>
+</RelativeLayout>

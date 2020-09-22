@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/bgtab"
+        android:id="@+id/toolbar"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/prompt_light"
+                android:text="@string/saved"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+        </RelativeLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:scrollbars="none">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="90dp"
+        >
+      <com.google.android.material.textview.MaterialTextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/news_and_articles"
+          android:textSize="20sp"
+          android:layout_margin="@dimen/twenty"
+          android:fontFamily="@font/raleway_light"
+          android:id="@+id/nwsar"/>
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/recycler_view"
+    android:layout_below="@id/nwsar"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stories"
+            android:textSize="20sp"
+            android:layout_below="@id/recycler_view"
+            android:layout_margin="@dimen/twenty"
+            android:fontFamily="@font/raleway_light"
+            android:id="@+id/stry"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler_view1"
+        android:layout_marginTop="@dimen/twenty"
+        android:layout_below="@id/stry"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/twenty"
+        android:text="DELETE EVERYTHING"
+        android:backgroundTint="@color/black"
+        android:layout_marginTop="@dimen/twenty"
+        android:id="@+id/but"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/recycler_view1"/>
+
+
+
+    </RelativeLayout>
+    </ScrollView>
+
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/there_s_nothing_you_saved_for_offline"
+        android:textSize="@dimen/twenty"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/raleway_light"
+        android:id="@+id/emp"
+        android:visibility="gone"
+        />
+
+
+    <ProgressBar
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress_circular"
+        android:visibility="gone"
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_light"
+        android:id="@+id/btmnav"
+        app:menu="@menu/new_menu"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@drawable/nav_back"
+        app:itemRippleColor="@android:color/transparent"
+        app:itemHorizontalTranslationEnabled="true"
+        android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>

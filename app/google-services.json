@@ -1,0 +1,65 @@
+{
+  "project_info": {
+    "project_number": "488396103002",
+    "firebase_url": "https://quizo-1588245352904.firebaseio.com",
+    "project_id": "quizo-1588245352904",
+    "storage_bucket": "quizo-1588245352904.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488396103002:android:7234b5b24af81afee32763",
+        "android_client_info": {
+          "package_name": "com.quizo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488396103002-oq1ngt0n82e59bs7cgssbtgktqdl9eod.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quizo",
+            "certificate_hash": "4d6b430cdfc2fe5c69340707d7cd20e627540139"
+          }
+        },
+        {
+          "client_id": "488396103002-s9qfj2i1loi3gq17egma5uppidf9gavs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quizo",
+            "certificate_hash": "6e50eb0db63fa79dc03ed3855f0c859bc463897c"
+          }
+        },
+        {
+          "client_id": "488396103002-kdujc55j01kuvdkghhbsepd703po2dts.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quizo",
+            "certificate_hash": "01d4d503c710090f4a31972058a4dd14f023b370"
+          }
+        },
+        {
+          "client_id": "488396103002-m6ddo0d186osna3lf3cqrpm2drtk8i8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWf4-7mMsq_bBkJ653qqybmQGvlBgb9RE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488396103002-m6ddo0d186osna3lf3cqrpm2drtk8i8j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-2569821792203202~3836700559"
+    }
+  ],
+  "configuration_version": "1"
+}

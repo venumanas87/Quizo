@@ -1,0 +1,37 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl1"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rl3"
+            android:layout_marginTop="@dimen/ten_dp"
+            >
+
+            <SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:background="@drawable/search_back"
+                android:id="@+id/srchtxt"
+                android:queryBackground="@android:color/transparent"
+                android:layout_marginHorizontal="@dimen/twenty"
+                android:focusedByDefault="true"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/srchtxt"
+                android:layout_marginTop="10dp"
+                android:id="@+id/recycler_view"/>
+        </RelativeLayout>
+
+<ProgressBar
+    android:layout_width="70dp"
+    android:layout_height="70dp"
+    android:id="@+id/progress_circular"
+    android:layout_centerInParent="true"
+    android:visibility="gone"/>
+    </RelativeLayout>

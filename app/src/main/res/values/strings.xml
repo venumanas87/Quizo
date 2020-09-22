@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Quizo</string>
+    <string name="sign_in">Sign In</string>
+    <string name="please_sign_in_with_below_options_to_continue">Please sign in with below options to continue</string>
+    <string name="type_a_message">Type a Message</string>
+    <string name="loading">Loading...</string>
+    <string name="currently_in_your_state">Currently in your state</string>
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="science">Science</string>
+    <string name="technology">Technology</string>
+    <string name="startup">Startup</string>
+    <string name="sports">Sports</string>
+    <string name="business">Business</string>
+    <string name="politics">Politics</string>
+    <string name="automobile">Automobile</string>
+    <string name="miscellaneous">Miscellaneous</string>
+    <string name="world">World</string>
+    <string name="there_s_nothing_you_saved_for_offline">There\'s nothing you saved for offline</string>
+    <string name="national">National</string>
+    <string name="editorials">Editorials</string>
+    <string name="saved">Saved offline</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="profile">Profile</string>
+    <string name="english">English</string>
+    <string name="hindi">Hindi</string>
+    <string name="genre">Genre</string>
+    <string name="ficiton">Ficiton</string>
+    <string name="animation_key">blob</string>
+    <string name="stories">Stories</string>
+    <string name="news">news</string>
+    <string name="news_and_articles">News and Articles</string>
+    <string name="about">About</string>
+    <string name="the_quizo_app_is_developed_with_3_by_venu"><![CDATA[The Quizo App is developed and maintained with <3 by Venu.]]></string>
+    <string name="the_contributers">The Contributers</string>
+    <string name="a_very_very_big_thanks_to_all_our_talented_contributers_without_them_the_app_would_be_impossible">A very very big thanks to all our talented contributers without them the app would be impossible</string>
+    <string name="feeds">Feeds</string>
+    <string name="feedsc">FEEDS</string>
+    <string name="india_population">INDIA POPULATION</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
+
+
+</resources>

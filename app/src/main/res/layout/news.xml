@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#E6FFFFFF"
+    android:layout_height="match_parent">
+    <include layout="@layout/loading_view"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/tool"
+        android:background="@color/colorPrimaryLight"
+        android:elevation="8dp">
+<de.hdodenhof.circleimageview.CircleImageView
+    android:layout_width="25dp"
+    android:layout_height="25dp"
+    android:layout_marginStart="@dimen/ten_dp"
+    android:src="@drawable/newspaper"
+    android:layout_centerVertical="true"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:clickable="true"
+    android:id="@+id/profimg"
+    android:focusable="true" />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="News"
+          android:layout_toEndOf="@id/profimg"
+          android:textColor="@color/white"
+          android:textSize="25sp"
+          android:layout_centerVertical="true"
+          android:layout_marginStart="@dimen/twenty"
+          android:fontFamily="@font/raleway"
+          />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/search"
+            android:src="@drawable/ic_search_gray_24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:tint="@color/white"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_marginEnd="@dimen/ten_dp"
+            android:clickable="true"
+            android:focusable="true" />
+    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/tool"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:id="@+id/filterrl">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
+                android:layout_marginStart="@dimen/ten_dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/lan_card"
+                android:padding="@dimen/ten_dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/ten_dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/lang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="15sp"
+                        android:layout_centerVertical="true"
+                        android:text="Language"
+                        android:textColor="@color/white" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_expand_more_black_24dp"
+                    android:layout_toRightOf="@id/lang"
+                    android:tint="@color/white"/>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/filterrl"
+        android:scrollbars="none">
+<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/twenty"
+           android:paddingBottom="@dimen/twenty">
+
+
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rls1">
+                <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp"
+                    android:id="@+id/hdr">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/l1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+
+                        android:layout_marginHorizontal="@dimen/ten_dp"
+                        android:src="@drawable/newspaper"
+                        app:civ_border_color="@color/colorPrimary"
+                        app:civ_border_width="3dp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:layout_alignParentEnd="true"
+                        android:id="@+id/cat_card1"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/ten_dp"
+                        >
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/categ"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:textSize="15sp"
+                                android:layout_centerVertical="true"
+                                android:layout_margin="5dp"
+                                android:text="Category"
+                                android:textColor="@color/light_grey" />
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_expand_more_black_24dp"
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@id/categ"
+                                android:tint="@color/light_grey"/>
+                        </RelativeLayout>
+                    </com.google.android.material.card.MaterialCardView>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/app_name"
+    android:fontFamily="@font/raleway"
+    android:id="@+id/h1"
+    android:textSize="20sp"
+    android:layout_toEndOf="@id/l1"
+    android:layout_centerVertical="true"/>
+</RelativeLayout>
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="280dp"
+    android:layout_below="@id/hdr"
+    android:layoutAnimation="@anim/layout_animation_grid"
+    android:layout_marginTop="@dimen/ten_dp"
+    android:id="@+id/recycler_view1"/>
+            </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rls1">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/hdr2">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/newspaper"
+                android:layout_centerVertical="true"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="3dp"
+                android:id="@+id/l2"
+                android:layout_marginHorizontal="@dimen/ten_dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:fontFamily="@font/raleway"
+                android:textSize="20sp"
+                android:id="@+id/h2"
+                android:layout_toEndOf="@id/l2"
+                android:layout_centerVertical="true"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/cat_card2"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/ten_dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/categ2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="15sp"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="5dp"
+                        android:text="Category"
+                        android:textColor="@color/light_grey" />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_expand_more_black_24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/categ2"
+                        android:tint="@color/light_grey"/>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_below="@id/hdr2"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:id="@+id/recycler_view2"/>
+    </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:id="@+id/blck"
+            android:visibility="gone"
+            />
+<include layout="@layout/bottomsheetlang"/>
+        <include layout="@layout/categ_bottomsheet"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</RelativeLayout>

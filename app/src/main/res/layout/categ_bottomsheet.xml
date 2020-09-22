@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="400dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/back_addtask"
+    android:id="@+id/cat_rl"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    app:behavior_peekHeight="0dp"
+    android:backgroundTint="@color/grey"
+    app:behavior_hideable="true">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="40dp"
+        android:layout_height="7dp"
+        android:backgroundTint="@color/light_grey"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/ten_dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="20dp"
+        >
+       <RadioGroup
+           android:layout_width="wrap_content"
+           android:id="@+id/rg"
+           android:layout_height="wrap_content">
+
+       </RadioGroup>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

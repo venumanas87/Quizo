@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/darkgrey"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Hey User,"
+    android:textColor="@color/white"
+    android:textSize="35sp"
+    android:id="@+id/user"
+    android:fontFamily="@font/raleway"
+    android:layout_margin="@dimen/twenty"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please select your Gender"
+        android:layout_above="@id/gender"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:fontFamily="@font/raleway"
+        android:textSize="20sp"
+        android:layout_marginTop="@dimen/twenty"
+        android:layout_marginBottom="@dimen/hundred"/>
+
+  <RelativeLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/gender"
+      android:layout_centerInParent="true">
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/male_ic96"
+          android:id="@+id/male"
+          android:onClick="handleClick"
+          android:background="?attr/selectableItemBackgroundBorderless"
+          android:layout_margin="@dimen/twenty"
+          android:contentDescription="@string/male" />
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/female_ic96"
+          android:onClick="handleClick"
+          android:background="?attr/selectableItemBackgroundBorderless"
+          android:layout_toEndOf="@id/male"
+          android:layout_margin="@dimen/twenty"
+          android:id="@+id/female"
+          android:contentDescription="@string/female" />
+
+  </RelativeLayout>
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:background="?attr/selectableItemBackground"
+       android:text="I prefer not to tell"
+       android:layout_below="@id/gender"
+       android:textColor="@color/white"
+       android:onClick="handleClick"
+       android:layout_marginTop="@dimen/hundred"
+       android:textSize="18sp"
+       android:id="@+id/ng"
+       android:fontFamily="@font/raleway"
+       android:layout_centerHorizontal="true"/>
+</RelativeLayout>

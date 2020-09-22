@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryLight">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/feels_white_80"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="70dp"
+            >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/feeds_back_top"
+        android:id="@+id/rl1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/feedsc"
+            android:fontFamily="@font/raleway_light"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/feels_white_80"
+        android:layout_below="@id/rl1">
+
+       <com.google.android.material.card.MaterialCardView
+           android:layout_width="match_parent"
+           android:layout_height="200dp"
+           android:layout_marginVertical="@dimen/twenty"
+           android:layout_marginHorizontal="@dimen/ten_dp"
+           android:backgroundTint="#FFFFFF"
+           app:cardCornerRadius="@dimen/ten_dp"
+           android:id="@+id/counterC"
+           app:cardElevation="@dimen/ten_dp">
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               >
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/mrl1"
+                   android:layout_alignParentStart="true">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/india_population"
+                       android:fontFamily="@font/raleway_light"
+                       android:textSize="18sp"
+                       android:id="@+id/indpop"
+                       android:layout_centerHorizontal="true"
+                       android:layout_marginVertical="@dimen/ten_dp"
+                       android:textAlignment="center"/>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="0000000"
+                       android:fontFamily="@font/crimson_text"
+                       android:textSize="25sp"
+                       android:layout_below="@id/indpop"
+                       android:id="@+id/popcnt"
+                       android:layout_centerHorizontal="true"
+                       android:textAlignment="center"/>
+
+               </RelativeLayout>
+               <View
+                   android:layout_width="match_parent"
+                   android:layout_height="0.5dp"
+                   android:layout_below="@id/mrl1"
+                   android:layout_marginHorizontal="@dimen/twenty"
+                   android:layout_marginTop="@dimen/twenty"
+                   android:id="@+id/sepa"
+                   android:alpha="0.8"
+                   android:background="@color/light_grey"/>
+               <RelativeLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerHorizontal="true"
+                   android:layout_marginTop="@dimen/twenty"
+                   android:layout_below="@id/sepa">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/raleway_light"
+                       android:textAlignment="center"
+                       android:text="Births"
+                       android:id="@+id/yrch"
+                       android:layout_marginStart="@dimen/twenty"
+                       />
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/raleway_light"
+                       android:textAlignment="center"
+                       android:text="Deaths"
+                       android:layout_toEndOf="@id/yrch"
+                       android:id="@+id/gr"
+                       android:layout_marginStart="@dimen/twenty"
+                       />
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/raleway_light"
+                       android:textAlignment="center"
+                       android:text="Migrated"
+                       android:layout_toEndOf="@id/gr"
+                       android:id="@+id/gs"
+                       android:layout_marginStart="@dimen/twenty"
+                       />
+               </RelativeLayout>
+
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:fontFamily="@font/comfortaa"
+                   android:textColor="@color/light_grey"
+                   android:text="Last Updated :        "
+                   android:layout_alignParentBottom="true"
+                   android:alpha="0.5"
+                   android:layout_alignParentEnd="true"
+                   android:textSize="12sp"
+                   android:layout_margin="5dp"
+                   android:id="@+id/lastU"/>
+
+           </RelativeLayout>
+
+       </com.google.android.material.card.MaterialCardView>
+
+        <RelativeLayout
+            android:id="@+id/rll1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/counterC"
+           android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/ten_dp"
+            android:layout_marginTop="51dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/c1"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginVertical="@dimen/ten_dp"
+
+                android:layout_marginHorizontal="@dimen/twenty"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/twenty">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_baseline_dynamic_feed_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:fontFamily="@font/raleway_light"
+                        android:text="News"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/c2"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginVertical="@dimen/ten_dp"
+                android:layout_marginHorizontal="@dimen/twenty"
+                android:layout_toEndOf="@id/c1"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/twenty">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_baseline_short_text_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:fontFamily="@font/raleway_light"
+                        android:text="Editorials"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/rll1">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginHorizontal="@dimen/twenty"
+                app:cardElevation="5dp"
+                android:layout_marginVertical="@dimen/ten_dp"
+                android:id="@+id/c3"
+                app:cardCornerRadius="15dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/twenty"
+                    >
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_baseline_menu_book_24" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/raleway_light"
+                        android:text="Stories"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_alignParentBottom="true"
+                        android:textSize="15sp"/>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:id="@+id/c4"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp"
+                android:layout_marginHorizontal="@dimen/twenty"
+                android:layout_marginVertical="@dimen/ten_dp"
+                android:layout_toEndOf="@id/c3"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/twenty"
+                    >
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_baseline_format_quote_24"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/raleway_light"
+                        android:text="Articles"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_alignParentBottom="true"
+                        android:textSize="15sp"/>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
+    </RelativeLayout>
+
+        </RelativeLayout>
+        </ScrollView>
+</RelativeLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_light"
+        android:id="@+id/btmnav"
+        app:menu="@menu/new_menu"
+        android:background="@color/colorPrimaryLight"
+        app:itemIconTint="@drawable/nav_back"
+        android:layout_gravity="bottom"
+        app:itemHorizontalTranslationEnabled="true"
+        android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>

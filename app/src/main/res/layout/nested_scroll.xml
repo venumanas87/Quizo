@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:scrollbars="none"
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/twenty"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+
+            <TextView
+                android:id="@+id/stit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/raleway"
+                android:text="@string/english"
+                android:textAlignment="center"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/stit"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/gabriela"
+                android:text="By - VEnu MAnas"
+                android:textColor="@color/black"
+                android:textSize="8sp" />
+
+            <RelativeLayout
+                android:id="@+id/rl1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/author"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/twenty">
+
+                <TextView
+                    android:id="@+id/genre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/raleway"
+                    android:text="@string/genre" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:textAppearance="@style/ChipStyle"
+                   android:id="@+id/gchip"
+                    android:layout_marginLeft="@dimen/twenty"
+                    android:layout_toRightOf="@id/genre"
+                    android:text="@string/ficiton" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl1"
+                android:fontFamily="@font/crimson_text"
+                android:textAlignment="center"
+                android:layout_marginHorizontal="2dp"
+                android:paddingBottom="80dp"
+                android:text="@string/please_sign_in_with_below_options_to_continue" />
+
+        </RelativeLayout>
+
+
+</androidx.core.widget.NestedScrollView>

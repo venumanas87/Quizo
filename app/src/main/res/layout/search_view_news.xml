@@ -1,0 +1,207 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl1"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/rl3"
+        android:background="@color/white"
+        android:elevation="8dp"
+        >
+ <ImageView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:src="@drawable/ic_back_arrow_gray_24dp"
+     android:layout_centerVertical="true"
+     android:layout_marginHorizontal="@dimen/ten_dp"
+     android:background="?attr/selectableItemBackgroundBorderless"
+     android:id="@+id/back"/>
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:background="@drawable/search_back"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/back"
+            android:layout_marginVertical="8dp"
+            android:queryBackground="@android:color/transparent"
+            android:id="@+id/srchtxt"
+            android:layout_marginHorizontal="@dimen/twenty"
+            android:focusedByDefault="true"/>
+
+    </RelativeLayout>
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/rl3"
+    android:id="@+id/scroll"
+
+    android:scrollbars="none">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ten_dp"
+        android:id="@+id/rls1">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/hdr">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/l1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+
+                android:layout_marginHorizontal="@dimen/ten_dp"
+                android:src="@drawable/newspaper"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="3dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/white"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/cat_card1"
+                android:elevation="0dp"
+                android:outlineProvider="none"
+                app:cardCornerRadius="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/ten_dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/categ"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="15sp"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="5dp"
+                        android:text="more"
+                        android:textColor="@color/light_grey" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ANI"
+                android:fontFamily="@font/raleway"
+                android:id="@+id/h1"
+                android:textSize="20sp"
+                android:layout_toEndOf="@id/l1"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_below="@id/hdr"
+            android:layoutAnimation="@anim/layout_animation_grid"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:id="@+id/recycler_view1"/>
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rls1"
+        android:layout_marginTop="@dimen/ten_dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/hdr2">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/l2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+
+                android:layout_marginHorizontal="@dimen/ten_dp"
+                android:src="@drawable/newspaper"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="3dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/white"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/cat_card2"
+                android:elevation="0dp"
+                android:outlineProvider="none"
+                app:cardCornerRadius="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/ten_dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/categ2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:textSize="15sp"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="5dp"
+                        android:text="more"
+                        android:textColor="@color/light_grey" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jagran"
+                android:fontFamily="@font/raleway"
+                android:id="@+id/h2"
+                android:textSize="20sp"
+                android:layout_toEndOf="@id/l2"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_below="@id/hdr2"
+            android:layoutAnimation="@anim/layout_animation_grid"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:id="@+id/recycler_view2"/>
+    </RelativeLayout>
+</RelativeLayout>
+</ScrollView>
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:lottie_rawRes="@raw/loading"
+        app:lottie_loop="true"
+        android:id="@+id/loading"
+        android:visibility="gone"
+        android:elevation="@dimen/twenty"
+        android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"/>
+
+
+
+
+
+</RelativeLayout>

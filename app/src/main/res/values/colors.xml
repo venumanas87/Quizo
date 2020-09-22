@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5E35B1</color>
+    <color name="colorPrimaryDark">#4A148C</color>
+    <color name="colorAccent">#290063</color>
+    <color name="colorPrimaryLight">#A068FF</color>
+    <color name="black">#000000</color>
+    <color name="grey">#252525</color>
+    <color name="white">#ffffff</color>
+    <color name="darkgrey">#222222</color>
+    <color name="light_grey">#696969</color>
+    <color name="searchbarcolor">#C0B2DA</color>
+    <color name="md_red_A200">#FF5252</color>
+    <color name="md_red_800">#C62828</color>
+    <color name="white_80">#80FFFFFF</color>
+    <color name="feels_white_80">#ECECEC</color>
+    <color name="gray">#8B8989</color>
+    <color name="redChart">#FF5252</color>
+    <color name="recChart">#19FF80</color>
+</resources>

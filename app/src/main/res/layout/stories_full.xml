@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/grey"
+        android:id="@+id/rl2">
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back_arrow_gray_24dp"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="@color/white"
+                android:id="@+id/back"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="@dimen/twenty"
+                android:focusable="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stories"
+            android:textSize="30sp"
+            android:layout_margin="5dp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/crimson_text"
+            android:textColor="@color/white" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search_gray_24dp"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="@color/white"
+            android:id="@+id/search"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/twenty"/>
+    </RelativeLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        android:layout_below="@id/rl2"
+        app:tabTextColor="@color/white"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/colorPrimary"
+        app:tabIndicatorColor="@color/white"
+        android:id="@+id/tabs">
+
+    </com.google.android.material.tabs.TabLayout>
+<androidx.viewpager.widget.ViewPager
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/tabs"
+    android:id="@+id/viewpager"/>
+
+</RelativeLayout>
