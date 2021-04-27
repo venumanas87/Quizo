@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context=".LoggedIn"
+    tools:context=".activity.LoggedIn"
     android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
     android:orientation="vertical">
 <ScrollView

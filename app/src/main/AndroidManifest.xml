@@ -23,7 +23,7 @@
         android:hardwareAccelerated="true"
         tools:ignore="GoogleAppIndexingWarning"
         android:fullBackupContent="@xml/backup_descriptor">
-        <activity android:name=".OffActivity" />
+        <activity android:name=".activity.OffActivity" />
 
         <meta-data
             android:name="com.google.android.actions"
@@ -35,14 +35,11 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
         <meta-data
-            android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="8719" />
-        <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_launcher_foreground"/>
+            android:resource="@drawable/ic_quizo_noti"/>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,40 +47,43 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+
+
         </activity>
-        <activity android:name=".SecondActivity" />
-        <activity android:name=".LoggedIn" />
+        <activity android:name=".activity.SecondActivity" />
+        <activity android:name=".activity.LoggedIn" />
         <activity
-            android:name=".ChatActivity"
+            android:name=".activity.ChatActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".NewsActivity">
+        <activity android:name=".activity.NewsActivity">
         </activity>
-        <activity android:name=".SharedeleClass">
+        <activity android:name=".activity.SharedeleClass">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".StoryView" />
-        <activity android:name=".ProfileActivity"
+        <activity android:name=".activity.StoryView" />
+        <activity android:name=".activity.ProfileActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
-        <activity android:name=".StoryFullActivity" />
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".FeedsActivity" />
-        <activity android:name=".NewsActivity1" />
-        <activity android:name=".EditorialActivity" />
-        <activity android:name=".SearchNewsActivity" />
-        <activity android:name=".CovidFull" />
-        <activity android:name=".FirstTime" />
-        <activity android:name=".ArticleActivity" />
-        <activity android:name=".Updates" />
+        <activity android:name=".activity.StoryFullActivity" />
+        <activity android:name=".activity.AboutActivity" />
+        <activity android:name=".activity.FeedsActivity" />
+        <activity android:name=".activity.NewsActivity1" />
+        <activity android:name=".activity.EditorialActivity" />
+        <activity android:name=".activity.SearchNewsActivity" />
+        <activity android:name=".activity.CovidFullActivity" />
+        <activity android:name=".activity.FirstTimeActivity" />
+        <activity android:name=".activity.ArticleActivity" />
+        <activity android:name=".utils.Updates" />
 
-        <service android:name=".MyFirebaseMessagingService"
+        <service android:name=".utils.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <receiver android:name=".utils.NotificationBroadcast" />
     </application>
 
 </manifest>
