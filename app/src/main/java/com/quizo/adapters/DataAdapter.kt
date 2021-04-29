@@ -16,7 +16,6 @@ class DataAdapter(private val dataList: List<CoData>) : RecyclerView.Adapter<MyV
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var curr: TextView = view.findViewById(R.id.inyour2)
-        var act: TextView = view.findViewById(R.id.act2)
         var dea: TextView = view.findViewById(R.id.dea2)
         var rec: TextView = view.findViewById(R.id.rec2)
         var conf: TextView = view.findViewById(R.id.conf2)
@@ -32,7 +31,6 @@ class DataAdapter(private val dataList: List<CoData>) : RecyclerView.Adapter<MyV
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = dataList[position]
-        holder.act.text = data.active
         holder.conf.text = data.confirmed
         holder.curr.text = data.currently
         holder.dea.text = data.deaths
@@ -41,7 +39,7 @@ class DataAdapter(private val dataList: List<CoData>) : RecyclerView.Adapter<MyV
         holder.srcard.setOnClickListener { view ->
             val i = Intent(view.context, CovidFullActivity::class.java)
             i.putExtra("cont",data.currently)
-            i.putExtra("dec",data.deaths.split("DEATHS")[1])
+            i.putExtra("dec",data.deaths)
             view.context.startActivity(i)
         }
         }else{

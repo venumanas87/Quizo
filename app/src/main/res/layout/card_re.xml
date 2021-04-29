@@ -8,9 +8,10 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/twenty"
-        android:layout_marginRight="@dimen/twenty"
+        android:backgroundTint="@color/card_bg_covd"
+        android:layout_marginHorizontal="10dp"
+        android:outlineProvider="none"
         app:cardElevation="2dp"
-        android:outlineSpotShadowColor="@color/md_red_800"
         app:cardCornerRadius="20dp"
         >
 
@@ -21,9 +22,10 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/twenty"
+                android:layout_marginVertical="20dp"
                 android:clickable="true"
                 android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/covid_card_bg"
                 android:id="@+id/stateC"
                 android:focusable="true">
         <TextView
@@ -33,67 +35,117 @@
             android:fontFamily="@font/raleway_light"
             android:layout_margin="5dp"
             android:gravity="center"
+            android:textColor="@color/white"
             android:text="@string/currently_in_your_state" />
             </com.google.android.material.card.MaterialCardView>
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/twenty"
-                android:gravity="center"
-                >
+                app:cardCornerRadius="20dp"
+                android:outlineProvider="none"
 
-                <TextView
-                    android:id="@+id/conf2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/twenty"
-                    android:fontFamily="@font/raleway_light"
-                    android:text="@string/loading"
-                    android:textAlignment="center"
-                    android:textColor="#B71C1C" />
+                android:backgroundTint="#1A000000">
 
-                <TextView
-                    android:id="@+id/act2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/twenty"
-                    android:fontFamily="@font/raleway_light"
-                    android:text="@string/loading"
-                    android:textAlignment="center"
-                    android:textColor="#F57F17" />
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/twenty"
-                android:layout_marginTop="@dimen/twenty"
-                android:gravity="center"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/loading"
-                    android:id="@+id/rec2"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/raleway_light"
-                    android:layout_marginHorizontal="@dimen/twenty"
-                    android:textColor="#64DD17"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/loading"
-                    android:id="@+id/dea2"
-                    android:fontFamily="@font/raleway_light"
-                    android:textAlignment="center"
-                    android:textColor="#9FA8DA"
-                    android:layout_marginHorizontal="@dimen/twenty"
-                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="15dp"
+                    android:layout_marginVertical="10dp">
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_marginVertical="10dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Confirmed"
+                            android:fontFamily="@font/raleway"
+                            android:id="@+id/con_tv"
+                            android:textSize="12sp"
+                            android:textColor="@color/md_red_A200"
+                            android:layout_marginBottom="10dp"/>
+
+                        <TextView
+                            android:id="@+id/conf2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/cabin_medium"
+                            android:text="@string/loading"
+                            android:textAlignment="center"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginVertical="10dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Recovered"
+                            android:fontFamily="@font/raleway"
+                            android:id="@+id/rec_tv"
+                            android:textSize="12sp"
+                            android:textColor="#5DFF41"
+                            android:layout_marginBottom="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/loading"
+                            android:id="@+id/rec2"
+                            android:textAlignment="center"
+                            android:fontFamily="@font/cabin_medium"
+                            android:textColor="@color/white"
+                            />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginVertical="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Deceased"
+                            android:fontFamily="@font/raleway"
+                            android:id="@+id/dea_tv"
+                            android:textSize="12sp"
+                            android:textColor="@color/gray"
+                            android:layout_marginBottom="10dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/loading"
+                            android:id="@+id/dea2"
+                            android:textAlignment="center"
+                            android:fontFamily="@font/cabin_medium"
+                            android:textColor="@color/white"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+
+            </com.google.android.material.card.MaterialCardView>
 
 
 

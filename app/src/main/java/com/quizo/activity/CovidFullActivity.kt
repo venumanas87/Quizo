@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.charts.LineChart
@@ -21,10 +22,10 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.quizo.adapters.DataAdapter
 import com.quizo.R
 import com.quizo.objects.CoData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import com.quizo.utils.StateNameConverter
+import com.quizo.utils.prettyCount
+import com.quizo.viewmodel.CovidViewModel
+import kotlinx.coroutines.*
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONException
@@ -40,6 +41,7 @@ class CovidFullActivity:AppCompatActivity(),CoroutineScope {
 
     var sCode:String = ""
     var fakeLoad:RelativeLayout? = null
+    lateinit var cvm:CovidViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.covid_full)
@@ -50,18 +52,21 @@ class CovidFullActivity:AppCompatActivity(),CoroutineScope {
         var state:String? = null
         var dec:String? = null
         val back:ImageView = findViewById(R.id.back)
+        cvm = ViewModelProvider(this).get(CovidViewModel::class.java)
+        GlobalScope.launch {
+
+            cvm.fetchData()
+        }
         back.setOnClickListener {
             finishAfterTransition()
         }
         fakeLoad = findViewById(R.id.fkscrn)
-        fakeLoad?.visibility = View.VISIBLE
+        fakeLoad?.visibility = View.GONE
      val extras = intent.extras
         if (extras!=null){
             state = extras.getString("cont")
             dec = extras.getString("dec")
-            job= launch(Dispatchers.IO){
-                initDists(state)
-            }
+            ripSite(StateNameConverter.convert(state))
 
         }
      val decTV:TextView = findViewById(R.id.tot_dec)
@@ -71,108 +76,53 @@ class CovidFullActivity:AppCompatActivity(),CoroutineScope {
 
     }
 
-    private fun initDists(state: String?) {
-        val client = OkHttpClient()
-        val request = Request.Builder()
-                .url("https://api.covid19india.org/v2/state_district_wise.json")
-                .method("GET", null)
-                .build()
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                runOnUiThread {
-                    Toast.makeText(applicationContext,"COVID19 Server Busy",Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            @Throws(IOException::class)
-            override fun onResponse(call: Call, response: Response) {
-                var jdata = response.body!!.string()
-                runOnUiThread {
-                    val recyclerView = findViewById<RecyclerView>(R.id.recycler_view1)
-                    val datalist: MutableList<CoData> = ArrayList()
-                    val mAdapter = DataAdapter(datalist)
-                    val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, true)
-                    recyclerView.layoutManager = layoutManager
-                    recyclerView.adapter = mAdapter
-                    var data: CoData
-                    try {
-                        val jobj = JSONArray(jdata)
-                        val msize = jobj.length()
-                        for (i in 0 until msize){
-                            val stObj = jobj.getJSONObject(i)
-                            if(stObj.getString("state")==state) {
-                                 sCode = stObj.getString("statecode")
-                                job = launch(Dispatchers.IO){ripSite(sCode)}
-                                Log.d(TAG, "onResponse: $sCode")
-                             val distArr = stObj.getJSONArray("districtData")
-                             val distSize = distArr.length()
-                                for (j in 0 until distSize) {
-                                    val districts = distArr.getJSONObject(j)
-                                    val active: Int = districts.getInt("active")
-                                    val confirmed: Int = districts.getInt("confirmed")
-                                    val deceased: Int = districts.getInt("deceased")
-                                    val recovered: Int = districts.getInt("recovered")
-                                    val distName = districts.getString("district")
-                                    data = CoData(distName, "ACTIVE \n$active", "DEATHS \n$deceased", "RECOVERED \n$recovered", "CONFIRMED \n$confirmed", "s")
-                                    datalist.add(data)
-                                }
-                                runOnUiThread { recyclerView.scrollToPosition(distSize-1) }  }
-                            }
-                        runOnUiThread { fakeLoad?.visibility = View.GONE
-                        } }catch (e:JSONException){
-                        e.printStackTrace()
-                    }
-                    }
-            }
-    })
-    }
-
+@SuppressLint("SetTextI18n")
 fun ripSite(sCode: String) {
     job = launch(Dispatchers.IO){
     drawGraphs(sCode.toLowerCase(Locale.ROOT))
     }
-    val client = OkHttpClient()
-    val request = Request.Builder()
-            .url("https://api.covid19india.org/v3/data.json")
-            .method("GET", null)
-            .build()
-    client.newCall(request).enqueue(object : Callback {
-        override fun onFailure(call: Call, e: IOException) {
-        }
 
-        @SuppressLint("SetTextI18n")
-        @Throws(IOException::class)
-        override fun onResponse(call: Call, response: Response) {
-            val jdata = response.body!!.string()
-            runOnUiThread {
-                val testTV:TextView = findViewById(R.id.testcount)
-                val lastU:TextView = findViewById(R.id.lastU)
-                val totCon:TextView = findViewById(R.id.tot_conf)
-                val totRec:TextView = findViewById(R.id.tot_rec)
-                val totDec:TextView = findViewById(R.id.tot_dec)
-                try {
-                    val mainObj = JSONObject(jdata)
-                    val stateObj = mainObj.getJSONObject(sCode)
-                    val totalObj = stateObj.getJSONObject("total")
-                    val metaObj = stateObj.getJSONObject("meta")
-                    val lastUpdated = metaObj.getString("last_updated").split("T")[0]
-                    val lastUpdatedTime = metaObj.getString("last_updated").split("T")[1]
-                    val totalTested = totalObj.getString("tested")
-                    val totalRec = totalObj.getInt("recovered")
-                    val totalcon = totalObj.getInt("confirmed")
-                    val ftoC = NumberFormat.getIntegerInstance().format(totalcon)
-                    val ftoR = NumberFormat.getIntegerInstance().format(totalRec)
-                    totCon.text = ftoC
-                    totRec.text = ftoR
-                    testTV.text = totalTested
-                    lastU.text = "Last Updated on $lastUpdated \n at $lastUpdatedTime"
-                }catch (e:JSONException){
-                    e.printStackTrace()
-                }
+    runOnUiThread {
+        cvm.data.observe(this, androidx.lifecycle.Observer {
+            if (it.equals("E")) {
+                Toast.makeText(this, "Covid Server Busy", Toast.LENGTH_SHORT).show()
+            } else {
+                cvm.covidData.observe(this, androidx.lifecycle.Observer {
+                    for (i in it.states.indices) {
+                        if (it.states[i].stateName.equals(StateNameConverter.convert(sCode))) {
+                            it.states[i].let {
+                                val testTV: TextView = findViewById(R.id.testcount)
+                                val lastU: TextView = findViewById(R.id.lastU)
+                                val totCon: TextView = findViewById(R.id.tot_conf)
+                                val totRec: TextView = findViewById(R.id.tot_rec)
+                                val totDec: TextView = findViewById(R.id.tot_dec)
+                                val recyclerView = findViewById<RecyclerView>(R.id.recycler_view1)
+                                val datalist: MutableList<CoData> = ArrayList()
+                                val mAdapter = DataAdapter(datalist)
+                                val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
+                                recyclerView.layoutManager = layoutManager
+                                recyclerView.adapter = mAdapter
 
+                                testTV.text = it.total.tested.toString()
+                                lastU.text = "Last Updated on\n ${it.lastupdated.split("T")[0]}"
+                                totCon.text = it.total.confirmed.toString()
+                                totRec.text = it.total.recovered.toString()
+                                totDec.text = it.total.deceased.toString()
+
+                                for (j in it.districts.indices){
+                                    it.districts[j].let {
+                                        datalist.add(CoData("",it.name,prettyCount.pretty(it.total.deceased),prettyCount.pretty(it.total.recovered),prettyCount.pretty(it.total.confirmed),"c"))
+                                        mAdapter.notifyDataSetChanged()
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                })
             }
-        }
-    })
+        })
+    }
 }
 
     private fun drawGraphs(toLowerCase: String) {

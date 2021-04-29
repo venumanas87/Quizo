@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
@@ -72,27 +73,34 @@
         android:textColor="@color/colorPrimaryDark"
         android:id="@+id/testcount"/>
 </RelativeLayout>
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/rll1"
-    android:layout_marginTop="@dimen/twenty"
-    android:id="@+id/rl1">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DISTRICTS"
-        android:fontFamily="@font/raleway"
-        android:textSize="20sp"
-        android:id="@+id/dst"
-        android:layout_marginStart="@dimen/twenty"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recycler_view1"
-        android:layout_marginTop="@dimen/ten_dp"
-        android:layout_below="@id/dst"/>
-</RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rll1"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/dst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/twenty"
+                android:fontFamily="@font/raleway"
+                android:text="DISTRICTS"
+                android:textSize="20sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dst"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/card_re" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

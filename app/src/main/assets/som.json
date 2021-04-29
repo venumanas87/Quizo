@@ -1,0 +1,47 @@
+{
+  "StateCode": {
+    "delta": {
+      "confirmed": "<deltaConfirmedForState>",
+      "deceased": "<deltaDeceasedForState>",
+      "recovered": "<deltaRecoveredForState>"
+    },
+    "districts": {
+      "District1": {
+        "delta":{
+          "confirmed": "<deltaConfirmedForDistrict>",
+          "deceased": "<deltaDeceasedForDistrict>",
+          "recovered": "<deltaRecoveredForDistrict>"
+        },
+        "meta": {
+          "population": "<districtPopulation>",
+          "tested": {
+            "last_updated": "yyyy-mm-dd",
+            "source": "uri",
+          },
+          "notes": "notesForDistrict"
+        },
+        "total": {
+          "confirmed": "<cumulativeConfirmedNumberForDistrict>",
+          "deceased": "<cumulativeDeceasedNumberForDistrict>",
+          "recovered": "<cumulativeRecoveredNumberForDistrict>",
+          "tested": "<cumulativeTestedNumberForDistrict>"
+        }
+      }
+    },
+    "meta": {
+      "last_updated": "yyyy-mm-ddHH24:M:S+GMT",
+      "population": "<statePopulation>",
+      "tested": {
+        "last_updated": "yyyy-mm-dd",
+        "source": "uri"
+      },
+      "notes": "notesForState"
+    },
+    "total": {
+      "confirmed": "<cumulativeConfirmedNumberForState>",
+      "deceased":" <cumulativeDeceasedNumberForState>",
+      "recovered": "<cumulativeRecoveredNumberForState>",
+      "tested": "<cumulativeConfirmedNumberForState>"
+    }
+  }
+}

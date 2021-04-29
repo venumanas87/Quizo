@@ -17,4 +17,6 @@
     <color name="gray">#8B8989</color>
     <color name="redChart">#FF5252</color>
     <color name="recChart">#19FF80</color>
+    <color name="covid_card_bg">#2A213E</color>
+    <color name="card_bg_covd">#3A2E55</color>
 </resources>

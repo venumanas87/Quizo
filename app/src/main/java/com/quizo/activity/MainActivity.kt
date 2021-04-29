@@ -89,6 +89,7 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPreferences = getSharedPreferences("quizo_prefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
+
         val firtsRun:Boolean = sharedPreferences.getBoolean("first_time",true)
         if(firtsRun){
             editor.putBoolean("first_time",false)
@@ -100,7 +101,7 @@ class MainActivity : AppCompatActivity() {
             val alarmManager: AlarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
             val timebtn = System.currentTimeMillis()
             val twelveHoursinMillis = 432*100*1_000L
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,timebtn+twelveHoursinMillis,twelveHoursinMillis,pendInte)
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,timebtn+20000,twelveHoursinMillis/4,pendInte)
         }else{
             println("venu already registered for noti")
              }

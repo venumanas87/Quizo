@@ -6,12 +6,14 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
 import android.view.View
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat.getSystemService
+import com.google.android.gms.common.util.SharedPreferencesUtils
 import com.quizo.R
 import com.quizo.activity.MainActivity
 import com.quizo.activity.NewsActivity1
@@ -28,11 +30,18 @@ import java.util.logging.Handler
 import kotlin.random.Random
 
 class NotificationBroadcast: BroadcastReceiver() {
+    var shrPref:SharedPreferences? = null
+    var editor:SharedPreferences.Editor? = null
     override fun onReceive(p0: Context?, p1: Intent?) {
+        shrPref = p0?.getSharedPreferences("prevData",0)
+        editor = shrPref?.edit()
        GlobalScope.launch {
            extract(p0!!)
            htU(p0)
        }
+
+
+
     }
 
     fun extract(context: Context){
@@ -52,14 +61,12 @@ class NotificationBroadcast: BroadcastReceiver() {
             val image = doc.select("div.news-card-image")
             val cont = doc.select("div.news-card-content")
             val contt = cont.select("div[itemprop]")
-            val i = Random.nextInt(0,size)
+            val i = 0
             val CONT = contt.eq(i).text()
             val tit = span.eq(i).text()
             val imgurl = image.eq(i).attr("style").split("'").toTypedArray()[1]
 
             sendLocalNotification(context,tit,CONT,imgurl,201)
-
-
 
         }catch(e: IOException) {
             e.printStackTrace()
@@ -74,14 +81,14 @@ class NotificationBroadcast: BroadcastReceiver() {
             doc = Jsoup.connect("https://aninews.in/category/national/").get()
             val mainDiv = doc.select("div.extra-related-block").select("figcaption").select("a[class='read-more']")
             val sizul = mainDiv.size
-            val i = Random.nextInt(0,sizul)
+            val i = 0
             val sdiv = mainDiv.eq(i).attr("abs:href")
             val doc1 = Jsoup.connect(sdiv).get()
             val main = doc1.select("div.card")
             val imgurl = main.select("header").first().select("div.img-container").select("img").attr("src")
             val titl = main.select("article").select("div.content").first().select("h1[class='title']").text()
             val desc = main.select("article").select("div[itemprop='articleBody']").select("p").text()
-            sendLocalNotification(context,titl,desc,imgurl,200)
+                sendLocalNotification(context,titl,desc,imgurl,200)
         }catch (e:IOException){
             e.printStackTrace()
         }
@@ -98,7 +105,7 @@ class NotificationBroadcast: BroadcastReceiver() {
         val notificationBuilder: Notification.Builder? = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             Notification.Builder(context,Constants.daily_updates_message_channel)
                     .setAutoCancel(true) //Automatically delete the notification
-                    .setSmallIcon(R.mipmap.ic_launcher_foreground)
+                    .setSmallIcon(R.drawable.ic_quizo_noti)
                     .setLargeIcon(getBitmapfromUrl(imgurl))
                     .setContentIntent(pendingIntent)
                     .setContentTitle("Daily News Update")
@@ -107,7 +114,7 @@ class NotificationBroadcast: BroadcastReceiver() {
         } else {
             Notification.Builder(context)
                     .setAutoCancel(true) //Automatically delete the notification
-                    .setSmallIcon(R.mipmap.ic_launcher_foreground)
+                    .setSmallIcon(R.drawable.ic_quizo_noti)
                     .setContentIntent(pendingIntent)
                     .setContentTitle(notificationTitle)
                     .setContentText(notificationBody)

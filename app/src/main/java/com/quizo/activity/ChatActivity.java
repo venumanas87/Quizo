@@ -36,7 +36,7 @@ import java.util.Objects;
 public class ChatActivity extends AppCompatActivity {
 MaterialCardView lc1,lc2,rc1,rc2,rc3;
     TextView lb1,lb2,rb1,rb2,rb3;
-Vibrator v;
+    Vibrator v;
     EditText editText;
     ExtendedFloatingActionButton addBtn;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();

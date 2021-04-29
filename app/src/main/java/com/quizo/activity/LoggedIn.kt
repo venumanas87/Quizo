@@ -26,6 +26,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
@@ -48,20 +49,24 @@ import com.kwabenaberko.openweathermaplib.models.currentweather.CurrentWeather
 import com.quizo.*
 import com.quizo.R
 import com.quizo.adapters.DataAdapter
-import com.quizo.objects.CoData
+import com.quizo.objects.*
+import com.quizo.utils.Constants
+import com.quizo.utils.StateNameConverter
+import com.quizo.utils.prettyCount
+import com.quizo.viewmodel.CovidViewModel
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import it.sephiroth.android.library.xtooltip.ClosePolicy
 import it.sephiroth.android.library.xtooltip.Tooltip
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONException
+import org.json.JSONObject
 import java.io.IOException
+import java.security.acl.Owner
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.coroutines.CoroutineContext
 
 class LoggedIn : AppCompatActivity(),CoroutineScope {
@@ -83,6 +88,7 @@ class LoggedIn : AppCompatActivity(),CoroutineScope {
     var deceasedC:String? = ""
     var tooltip: Tooltip? = null
     var tooltip1: Tooltip? = null
+    lateinit var cvm:CovidViewModel
     private val mLocationCallback: LocationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             val mLastLocation = locationResult.lastLocation
@@ -99,6 +105,10 @@ class LoggedIn : AppCompatActivity(),CoroutineScope {
         val ref = findViewById<LottieAnimationView>(R.id.refresh)
         val stcard:MaterialCardView = findViewById(R.id.stCard)
         val iny = findViewById<TextView>(R.id.inyour)
+        cvm = ViewModelProvider(this).get(CovidViewModel::class.java)
+        GlobalScope.launch {
+            cvm.fetchData()
+        }
         stcard.setOnClickListener {
             openCovid(stcard)
         }
@@ -173,9 +183,7 @@ class LoggedIn : AppCompatActivity(),CoroutineScope {
             }
         }
     }
-
-    @Throws(JSONException::class)
-    private fun extrD(JSD: String) {
+    private fun extrD(JSD: CovidData) {
         runOnUiThread {
             val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
             val datalist: MutableList<CoData> = ArrayList()
@@ -183,33 +191,11 @@ class LoggedIn : AppCompatActivity(),CoroutineScope {
             val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext, RecyclerView.HORIZONTAL, false)
             recyclerView.layoutManager = layoutManager
             recyclerView.adapter = mAdapter
-            var data: CoData
-            try {
-                val jobj = JSONArray(JSD)
-                val jobjs = jobj.length()
-                var state:String? = null
-                for (i in 0 until jobjs) {
-                    val mobj = jobj.getJSONObject(i)
-                    val dsArr = mobj.getJSONArray("districtData")
-                    val msize = dsArr.length()
-                    state = mobj.getString("state")
-                    var active:Int = 0
-                    var confirmed:Int =0
-                    var deceased:Int = 0
-                    var recovered:Int = 0
-                    for(j in 0 until msize){
-                        val dss = dsArr.getJSONObject(j)
-                        active = active.plus(dss.getInt("active"))
-                        confirmed = confirmed.plus(dss.getInt("confirmed"))
-                        deceased = deceased.plus(dss.getInt("deceased"))
-                        recovered = recovered.plus(dss.getInt("recovered"))
-                    }
-                    data = CoData(state, "ACTIVE \n$active", "DEATHS \n$deceased", "RECOVERED \n$recovered", "CONFIRMED \n$confirmed", "m")
-                    datalist.add(data)
+            for (i in JSD.states.indices){
+                JSD.states[i].let {
+                    datalist.add(CoData("",it.stateName,prettyCount.pretty(it.total.deceased),prettyCount.pretty(it.total.recovered),prettyCount.pretty(it.total.confirmed),"m"))
+                    mAdapter.notifyDataSetChanged()
                 }
-                runOnUiThread { mAdapter.notifyDataSetChanged() }
-            } catch (e: JSONException) {
-                e.printStackTrace()
             }
         }
     }
@@ -259,7 +245,11 @@ class LoggedIn : AppCompatActivity(),CoroutineScope {
                 val state = addresses[0].adminArea
                 Log.d(TAG, "geo: STATE =$state")
                 this.statee = state
-                    rip().execute(state)
+                runOnUiThread {
+                    ripData(state)
+                }
+
+
             }
         } catch (e: IOException) {
             e.printStackTrace()
@@ -482,112 +472,63 @@ class LoggedIn : AppCompatActivity(),CoroutineScope {
         bottomNavigationView.selectedItemId = R.id.page_1
     }
 
-    private inner class rip : AsyncTask<String?, Void?, Void?>() {
-        protected override fun doInBackground(vararg strings: String?): Void? {
-            Log.d(TAG, "doInBackground: STARTED RIPPING STATES DATTA")
-            val state = strings[0]
-            val client = OkHttpClient()
-            val request = Request.Builder()
-                    .url("https://api.covid19india.org/v2/state_district_wise.json")
-                    .method("GET", null)
-                    .build()
-            client.newCall(request).enqueue(object : Callback {
-                override fun onFailure(call: Call, e: IOException) {
-                    runOnUiThread {
-                        Toast.makeText(applicationContext,"COVID19 Server Busy",Toast.LENGTH_SHORT).show()
-                    }
-                }
+    @SuppressLint("SetTextI18n")
+    fun ripData(state:String){
+        val iny = findViewById<TextView>(R.id.inyour)
+        iny.text = state
+                cvm.data.observe(this,
+                        androidx.lifecycle.Observer {
+                            if (it == "E") {
+                                Toast.makeText(applicationContext, "COVID19 Server Busy", Toast.LENGTH_SHORT).show()
+                            } else {
+                                cvm.covidData.observe(this, androidx.lifecycle.Observer {
+                                    extrD(it)
+                                    var conI = 0
+                                    var decI = 0
+                                    var recI = 0
+                                    var actI = 0
+                                    for (i in it.states.indices) {
+                                        val sta = it.states[i]
+                                        if (it.states[i].stateName == state) {
+                                            val c = findViewById<TextView>(R.id.conf)
+                                            val r = findViewById<TextView>(R.id.rec)
+                                            val d = findViewById<TextView>(R.id.dea)
 
-                @Throws(IOException::class)
-                override fun onResponse(call: Call, response: Response) {
-                    var jdata = response.body!!.string()
-                    Log.d("RESULTTTT", "onResponse: $jdata")
-                    runOnUiThread {
-                        try {
-                            extrD(jdata)
-                            val jobj = JSONArray(jdata)
-                            val msize = jobj.length()
-                            var activeI:Int = 0
-                            var confirmedI:Int =0
-                            var deceasedI:Int = 0
-                            var recoveredI:Int = 0
-                            for (i in 0 until msize){
-                                var stObj = jobj.getJSONObject(i)
-                                if(stObj.getString("state")==state){
-                                    val disAr = stObj.getJSONArray("districtData")
-                                    val dsize = disAr.length()
-                                    var active:Int? = 0
-                                    var confirmed:Int? =0
-                                    var deceased:Int? = 0
-                                    var recovered:Int? = 0
-                                    for (j in 0 until dsize){
-                                        val dss = disAr.getJSONObject(j)
-                                        active = active?.plus(dss.getInt("active"))
-                                        confirmed = confirmed?.plus(dss.getInt("confirmed"))
-                                        deceased = deceased?.plus(dss.getInt("deceased"))
-                                        recovered = recovered?.plus(dss.getInt("recovered"))
+                                            c.text = " ${prettyCount.pretty(sta.total.confirmed)} \n (+${prettyCount.pretty(sta.delta.confirmed)})"
+                                            r.text = " ${prettyCount.pretty(sta.total.recovered)} \n (+${prettyCount.pretty(sta.delta.recovered)})"
+                                            d.text = "${prettyCount.pretty(sta.total.deceased)} \n (+${prettyCount.pretty(sta.delta.recovered)})"
+                                        }
+                                        conI += sta.total.confirmed / 2
+                                        decI += sta.total.deceased / 2
+                                        recI += sta.total.recovered / 2
+                                        var condI = 0
+                                        var decdI = 0
+                                        var recdI = 0
+                                        condI += sta.delta.confirmed/2
+                                        decdI += sta.delta.deceased/2
+                                        recdI += sta.delta.recovered/2
+
+                                        val c1 = findViewById<TextView>(R.id.conf1)
+                                        val r1 = findViewById<TextView>(R.id.rec1)
+                                        val d1 = findViewById<TextView>(R.id.dea1)
+
+                                        c1.text = "${prettyCount.pretty(conI)}\n(+${prettyCount.pretty(condI)})"
+                                        r1.text = "${prettyCount.pretty(recI)}\n(+${prettyCount.pretty(recdI)})"
+                                        d1.text = "${prettyCount.pretty(decI)}\n(+${prettyCount.pretty(decdI)})"
+
+
                                     }
-                                    val a = findViewById<TextView>(R.id.act)
-                                    val c = findViewById<TextView>(R.id.conf)
-                                    val iny = findViewById<TextView>(R.id.inyour)
-                                    val r = findViewById<TextView>(R.id.rec)
-                                    val d = findViewById<TextView>(R.id.dea)
-                                    deceasedC = deceased?.toString()
-                                    iny.text = state
-                                    a.text = "ACTIVE \n$active"
-                                    c.text = "CONFIRMED \n$confirmed"
-                                    r.text = "RECOVERED \n$recovered"
-                                    d.text = "DEATHS \n$deceased"
-                                    /*a1.text = "ACTIVE \n$ActiveI"
-                                    c1.text = "CONFIRMED \n$CONI"
-                                    r1.text = "RECOVERED \n$RecoveredI"
-                                    d1.text = "DEATHS \n$DeathsI"*/
-                                }
-                                val stobj = jobj.getJSONObject(i)
-                                val disArr = stobj.getJSONArray("districtData")
-                                val dssize = disArr.length()
-                                var active:Int = 0
-                                var confirmed:Int =0
-                                var deceased:Int = 0
-                                var recovered:Int = 0
-                                for (j in 0 until dssize){
-                                    val dss = disArr.getJSONObject(j)
-                                    active = active.plus(dss.getInt("active"))
-                                    confirmed = confirmed.plus(dss.getInt("confirmed"))
-                                    deceased = deceased.plus(dss.getInt("deceased"))
-                                    recovered = recovered.plus(dss.getInt("recovered"))
-                                }
-
-                                activeI = activeI.plus(active)
-                                confirmedI = confirmedI.plus(confirmed)
-                                deceasedI = deceasedI.plus(deceased)
-                                recoveredI = recoveredI.plus(recovered)
-
+                                })
                             }
+                        })
 
-                            val a1 = findViewById<TextView>(R.id.act1)
-                            val c1 = findViewById<TextView>(R.id.conf1)
-                            val iny1 = findViewById<TextView>(R.id.inyour1)
-                            val r1 = findViewById<TextView>(R.id.rec1)
-                            val d1 = findViewById<TextView>(R.id.dea1)
-                            iny1.text = "Across India"
-                            a1.text = "ACTIVE \n$activeI"
-                            c1.text = "CONFIRMED \n$confirmedI"
-                            r1.text = "RECOVERED \n$recoveredI"
-                            d1.text = "DEATHS \n$deceasedI"
-
-
-
-                        } catch (e: JSONException) {
-                            e.printStackTrace()
-                        }
-
-                    }
-                }
-            })
-            return null
-        }
     }
+
+
+
+
+
+
 
 
     private fun checkExistence() {
